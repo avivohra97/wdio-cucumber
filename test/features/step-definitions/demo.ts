@@ -24,3 +24,36 @@ Then(/^url should match (.*)$/,async (expected:string) => {
     let url = await browser.getUrl()
     chai.expect(url).to.equal(expected)
 })
+
+Given(/^web page is opened$/,async function () {
+    await browser.url("/")
+})
+
+Then(/^I click on Inputs$/, async function() {
+    let ele = await $(`a=Inputs`)
+    await ele.click()
+})
+
+Then(/^I see heading (.*)$/, async function (heading:string) {
+    let actualHeading = await $(`h3=${heading}`)
+    chai.expect(heading).to.equal(actualHeading)
+})
+
+Then(/^I check if input is enabled$/,async function(){
+    let numInput = await $(`input[type=number]`)
+    let isEnabled = await numInput.isEnabled();
+    console.log(isEnabled); 
+    await numInput.setValue(123)
+    await browser.pause(2)
+    console.log(await numInput.getValue())
+    await numInput.clearValue()
+    await numInput.setValue("avi")
+    console.log(await numInput.getValue())
+    await numInput.clearValue()
+    let val:string = "123"
+    for(let i=0;i<val.length;i++){
+        await browser.pause(1000)
+        await browser.keys(val.charAt(i))
+    }
+
+})
