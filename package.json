@@ -16,7 +16,6 @@
     "author": "Avneet Kaur",
     "license": "ISC",
     "devDependencies": {
-        "@types/chai": "^4.3.0",
         "@wdio/allure-reporter": "^7.19.1",
         "@wdio/cli": "^7.19.3",
         "@wdio/cucumber-framework": "^7.19.3",
